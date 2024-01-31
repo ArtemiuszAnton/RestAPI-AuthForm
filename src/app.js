@@ -1,8 +1,15 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
-const app = express();
 const router = require('./controller/controller')
 
+const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:3001',
+    method: 'GET,POST',
+    credentials: true
+}));
 app.use(bodyParser.json());
 
 app.use('/user', router);

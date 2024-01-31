@@ -36,8 +36,9 @@ async function updateUserPath(id, body) {
 
 async function authUser(email, pwd) {
     const user = await getUserByEmailDB(email);
-    if (user[0].email != email) throw new Error('this email not created');
-    if (user[0].pwd != pwd) throw new Error('wrong password');
+    if (user[0]?.email != email) throw new Error('this email not created');
+    if (user[0]?.pwd != pwd) throw new Error('wrong password');
+    return user
 }
 
 module.exports = { createUser, getAllUsers, updateUserById, updateUserPath, deleteUserById, getUserById, authUser }

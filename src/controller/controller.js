@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { createUser, getAllUsers, updateUserById, updateUserPath, deleteUserById, getUserById, authUser } = require('../service/service');
+const { createToken } = require('../../helper/jwt')
 
 router.post('/reg', async (req, res) => {
     try {
@@ -69,6 +70,8 @@ router.post('/auth', async (req, res) => {
     try {
         const { email, pwd } = req.body;
         const user = await authUser(email, pwd);
+        const token = await createToken();
+        res.setHeader('access-token', token);
         res.status(200).send(user)
     } catch (er) {
         res.status(404).send(er.message)
