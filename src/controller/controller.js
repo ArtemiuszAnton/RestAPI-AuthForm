@@ -3,22 +3,25 @@ const router = express.Router();
 const { createUser, getAllUsers, updateUserById, updateUserPath, deleteUserById, getUserById, authUser } = require('../service/service');
 const { createToken } = require('../../helper/jwt')
 
+const { buildResponse } = require('../helper/buildResponse');
+
+
 router.post('/reg', async (req, res) => {
     try {
         const { username, email, phone, pwd } = req.body;
         const user = await createUser(username, email, phone, pwd);
-        res.status(200).send(user)
+        buildResponse(200, user, res)
     } catch (er) {
-        res.status(404).send(er.message)
+        buildResponse(404, er.message, res)
     }
 });
 
 router.get('/', async (_req, res) => {
     try {
         const user = await getAllUsers();
-        res.status(200).send(user)
+        buildResponse(200, user, res)
     } catch (er) {
-        res.status(404).send(er.message)
+        buildResponse(404, er.message, res)
     }
 })
 
@@ -26,9 +29,9 @@ router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const user = await getUserById(id);
-        res.status(200).send(user)
-    } catch (error) {
-        res.status(404).send(error.message)
+        buildResponse(200, user, res)
+    } catch (er) {
+        buildResponse(404, er.message, res)
     }
 });
 
@@ -37,9 +40,9 @@ router.put('/:id', async (req, res) => {
         const { id } = req.params;
         const { username, email, phone, pwd } = req.body;
         const user = await updateUserById(id, username, email, phone, pwd);
-        res.status(200).send(user)
+        buildResponse(200, user, res)
     } catch (er) {
-        res.status(404).send(er.message)
+        buildResponse(404, er.message, res)
     }
 })
 
@@ -47,10 +50,9 @@ router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params
         const data = await deleteUserById(id)
-
-        res.status(200).send(data)
-    } catch (error) {
-        res.status(404).send(error.message)
+        buildResponse(200, data, res)
+    } catch (er) {
+        buildResponse(404, er.message, res)
     }
 })
 
@@ -59,9 +61,9 @@ router.patch("/:id", async (req, res) => {
         const { id } = req.params;
         const body = req.body;
         const user = await updateUserPath(id, body);
-        res.status(200).send(user);
-    } catch (error) {
-        res.status(404).send(error.message);
+        buildResponse(200, user, res)
+    } catch (er) {
+        buildResponse(404, er.message, res)
     }
 });
 
@@ -72,9 +74,9 @@ router.post('/auth', async (req, res) => {
         const user = await authUser(email, pwd);
         const token = await createToken();
         res.setHeader('access-token', token);
-        res.status(200).send(user)
+        buildResponse(200, user, res)
     } catch (er) {
-        res.status(404).send(er.message)
+        buildResponse(404, er.message, res)
     }
 })
 
