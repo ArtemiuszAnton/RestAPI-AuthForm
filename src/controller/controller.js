@@ -67,7 +67,6 @@ router.patch("/:id", async (req, res) => {
     }
 });
 
-
 router.post('/auth', async (req, res) => {
     try {
         const { email, pwd } = req.body;
