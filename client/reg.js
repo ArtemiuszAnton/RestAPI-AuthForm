@@ -22,5 +22,4 @@ btn.addEventListener('click', async () => {
     const p_username = document.querySelector('.username_p').innerHTML = json[0].username;
     const p_phone = document.querySelector('.phone_p').innerHTML = json[0].phone;
     const p_email = document.querySelector('.email_p').innerHTML = json[0].email;
-
 })
