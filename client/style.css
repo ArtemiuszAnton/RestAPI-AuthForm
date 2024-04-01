@@ -1,3 +1,49 @@
-div {
-    
+* {
+    background-color: rgb(223, 214, 243);
+    font: 400 16px Roboto;
+}
+
+.registration {
+    margin: 5% auto;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.registration input {
+    width: 250px;
+    padding: 5px;
+    border-radius: 4px;
+
+}
+
+.registration button {
+    color: azure;
+    padding: 4px;
+    background-color: rgba(140, 102, 202, 0.941);
+    border-radius: 4px;
+}
+
+
+.authorization {
+    margin: 5% auto;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.authorization input {
+    width: 250px;
+    padding: 5px;
+    border-radius: 4px;
+
+}
+
+.authorization button {
+    color: azure;
+    padding: 4px;
+    background-color: rgba(140, 102, 202, 0.941);
+    border-radius: 4px;
 }
